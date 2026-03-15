@@ -38,6 +38,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Auth endpoints — public
                 .requestMatchers("/api/auth/**").permitAll()
+                // Swagger UI and OpenAPI docs
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                 // H2 console — public (dev only)
                 .requestMatchers("/h2-console/**").permitAll()
                 // GET products and categories — public
