@@ -6,6 +6,9 @@ import com.pruebas.backbelisario.model.Product;
 import com.pruebas.backbelisario.repository.OrderRepository;
 import com.pruebas.backbelisario.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,5 +27,17 @@ public class OrderService {
             item.setPrice(p.getPrice());
         }
         return orderRepository.save(order);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    public Order getOrderById(Long id) {
+        return orderRepository.findById(id).orElse(null);
+    }
+
+    public void deleteOrder(Long id) {
+        orderRepository.deleteById(id);
     }
 }
